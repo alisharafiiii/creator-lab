@@ -1,92 +1,114 @@
-# Creator Lab
+<div dir="rtl">
 
-[![Watch Creator Lab classify Reel scripts and reveal hook patterns](docs/assets/creator-lab-demo.gif)](https://novitckii.com/lib/creator-lab/jev-demo.mp4)
+# کریتور لب — نسخهٔ فارسی
 
-**[Watch the full-quality demo](https://novitckii.com/lib/creator-lab/jev-demo.mp4)** · [Download MP4](docs/assets/creator-lab-demo.mp4) · Saved analysis replay
+ریلزهای اینستاگرام یک سازندهٔ محتوا را به یک کتابخانهٔ پژوهشی قابل‌جستجو تبدیل کنید: بر اساس موضوع و نوع هوک فیلتر کنید، تعامل‌ها را مقایسه کنید، اسکریپت‌ها را بخوانید و ببینید کدام الگوها برای او جواب داده‌اند.
 
-Turn a creator's Instagram Reels into a searchable research library. Filter by topic and hook, compare engagement, read the scripts, and open the original posts behind each pattern.
+- **رابط کاملاً فارسی و راست‌به‌چپ** با فونت وزیرمتن و اعداد فارسی
+- **رونویسی گفتار فارسی و انگلیسی** (تشخیص خودکار زبان یا انتخاب دستی)
+- **همه‌چیز روی کامپیوتر خودتان اجرا می‌شود** — کلیدهای شما فقط در فایل `.env` خودتان می‌مانند
+- بدون نیاز به نصب پکیج npm یا مرحلهٔ build
 
-Built with **Apify → Fireworks or Groq → TypeSafe Jev**. Runs locally in your browser. Bring your own API keys and choose a public creator, including your own account.
+زنجیرهٔ پردازش: **Apify** (جمع‌آوری ریلزها) ← **Groq یا Fireworks** (تبدیل گفتار به متن) ← **Jev از TypeSafe** (دسته‌بندی اسکریپت)
 
-## Start here
+## راه‌اندازی
 
-**[Full setup guide](docs/SETUP.md)** covers installing the tools, getting keys, choosing a transcription provider, your first analysis, and troubleshooting.
+۱. [Node.js](https://nodejs.org/) نسخهٔ ۲۴ (حداقل ۲۲.۹) و [FFmpeg](https://ffmpeg.org/download.html) را نصب کنید. در مک:
 
-1. Install [Node.js](https://nodejs.org/en/download) (24 recommended; minimum 22.9) and [FFmpeg](https://ffmpeg.org/download.html). Both `ffmpeg` and `ffprobe` must be on PATH.
-2. Download this repository using **Code → Download ZIP**, unzip it, and open a terminal in that folder. Or clone it:
+```sh
+brew install node ffmpeg
+```
 
-   ```sh
-   git clone https://github.com/artemnovitckii/creator-lab.git
-   cd creator-lab
-   ```
+۲. ریپو را دانلود کنید:
 
-3. Create your local configuration:
+```sh
+git clone <آدرس این ریپو>
+cd creator-lab
+```
 
-   ```sh
-   npm run setup
-   ```
+۳. فایل تنظیمات را بسازید:
 
-4. Open `.env` in your editor. Add `APIFY_TOKEN`, `TYPESAFE_API_KEY`, and **one** transcription key: `FIREWORKS_API_KEY` or `GROQ_API_KEY`. Set `TRANSCRIPTION_PROVIDER` to match.
-5. Check and launch:
+```sh
+npm run setup
+```
 
-   ```sh
-   npm run doctor
-   npm start
-   ```
+۴. فایل `.env` را باز کنید و کلیدهای **خودتان** را وارد کنید:
 
-6. Open **http://127.0.0.1:5190**, verify **Connections**, then choose **New analysis**. Enter a username without `@`. Start with a 20-Reel pilot.
-
-No npm dependencies or build step are needed. You can open the synthetic motion rehearsal without keys; real collection and analysis use paid provider APIs.
-
-## What you get
-
-- Eight transcript classifications: topic, opening move, hook mechanism, script structure, evidence, emotional appeal, advice specificity, and spoken CTA.
-- Script passages labeled as hook, setup, problem, example, advice, payoff, CTA, or other, with source text and available timestamps.
-- Combined topic and hook filters, engagement comparisons with sample sizes, and original-Reel links.
-- A synchronized thumbnail wall and performance map, with saved-result replay for screen recording.
-- Pausing, resuming, transcript reuse, classification caching, and JSON exports.
-
-Jev sees the speech before performance metrics are joined. Views and plays remain separate. Unknown metrics stay unknown. Engagement comparisons describe the selected sample; they do not prove what caused a Reel to perform.
-
-## Providers
-
-| Stage | Provider | Configuration |
+| کلید | از کجا بگیرید | کاربرد |
 | --- | --- | --- |
-| Collect Reel metadata and media URLs | [Apify Instagram Reel Scraper](https://apify.com/apify/instagram-reel-scraper) | `APIFY_TOKEN` |
-| Transcribe, default option | [Fireworks](https://fireworks.ai/) | `TRANSCRIPTION_PROVIDER=fireworks`, `FIREWORKS_API_KEY` |
-| Transcribe, alternative | [Groq](https://console.groq.com/docs/speech-to-text) | `TRANSCRIPTION_PROVIDER=groq`, `GROQ_API_KEY` |
-| Classify scripts | [TypeSafe Jev](https://docs.typesafe.ai/api) | `TYPESAFE_API_KEY` |
+| `APIFY_TOKEN` | [console.apify.com](https://console.apify.com/) ← Settings ← API & Integrations | جمع‌آوری ریلزها |
+| `TYPESAFE_API_KEY` | [typesafe.ai](https://typesafe.ai/) | دسته‌بندی اسکریپت (Jev) |
+| `GROQ_API_KEY` | [console.groq.com/keys](https://console.groq.com/keys) | رونویسی — پلن رایگان دارد (پیش‌فرض) |
+| `FIREWORKS_API_KEY` | [app.fireworks.ai](https://app.fireworks.ai/) | رونویسی — جایگزین Groq |
 
-Use either transcription provider. There is no automatic switch that could charge a different provider. Restart the server after changing `.env`.
+فقط یکی از Groq یا Fireworks لازم است. با `TRANSCRIPTION_PROVIDER=groq` یا `fireworks` انتخابش کنید.
 
-## Costs and coverage
+۵. بررسی و اجرا:
 
-You pay the providers directly. The Apify spending cap in the form covers **Apify only**, not Jev or transcription. Start small and check provider billing before increasing the batch. Displayed model costs are estimates using rates in the source, not a billing guarantee.
+```sh
+npm run doctor
+npm start
+```
 
-Each run requests 1 to 1,000 Reels from one handle. Actual coverage depends on Instagram and Apify. The scraper skips pinned and trial Reels; this is not a guaranteed full-account archive. Private, deleted, expired, or inaccessible media may fail. Music-only and very short speech are excluded from script analysis.
+۶. آدرس **http://127.0.0.1:5190** را باز کنید، روی **تحلیل جدید** بزنید و نام کاربری اینستاگرام را بدون `@` وارد کنید. اول با **۲۰ ریلز** شروع کنید.
 
-Replay animates saved results. It does not run collection or inference again, and its playback speed is not the pipeline's processing speed.
+بدون هیچ کلیدی هم می‌توانید نسخهٔ نمایشی را با `npm start` ببینید.
 
-## Privacy
+## هزینه‌ها
 
-The server binds to `127.0.0.1`. Keys stay in your local `.env` or server memory and are used to authenticate requests to their providers. Apify receives the handle; your chosen speech provider receives audio; Jev receives transcript text. Original source media is fetched from supported CDN hosts. The dashboard also loads fonts from Google Fonts. [Full data flow](docs/PRIVACY.md).
+هزینه را مستقیم به خود سرویس‌ها پرداخت می‌کنید. تقریب برای ۲۰ ریلز:
 
-`.env`, generated data, caches, and downloaded media are excluded from Git. This repository includes no personal API keys or collected creator archive. Never put keys into a GitHub issue or share your `.env`.
+- **Apify:** از اعتبار حساب Apify کم می‌شود. سقف هزینه را در فرم تحلیل تعیین می‌کنید (این سقف فقط برای Apify است).
+- **Groq:** معمولاً در محدودهٔ پلن رایگان.
+- **Jev:** حدود یک سنت.
 
-## Development
+قبل از تحلیل‌های بزرگ، صورت‌حساب هر سرویس را چک کنید.
+
+## چه چیزی به دست می‌آورید
+
+- هشت دسته‌بندی برای هر اسکریپت: موضوع، شروع کلام، سازوکار هوک، ساختار، شواهد، جذبهٔ احساسی، دقت توصیه و فراخوان گفتاری
+- برچسب نقش هر بخش از متن: هوک، مقدمه، مسئله، مثال، توصیه، نتیجه‌گیری، فراخوان
+- فیلتر هم‌زمان موضوع و هوک، مقایسهٔ دوبه‌دوی الگوها با حجم نمونه، و لینک ریلز اصلی
+- دیوار تصاویر و نقشهٔ عملکرد، به‌علاوهٔ **استودیوی ضبط** برای ساختن ویدیو از نتایج
+- توقف و ادامهٔ اجرا، کش نتایج، و خروجی JSON
+
+مقایسه‌ها فقط همین نمونه را توصیف می‌کنند و ثابت نمی‌کنند چه چیزی باعث موفقیت یک ریلز شده است.
+
+## امنیت کلیدها
+
+- فایل `.env` و پوشهٔ `data/` (ریلزهای جمع‌آوری‌شده) در `.gitignore` هستند و هرگز commit نمی‌شوند.
+- `npm test` همهٔ فایل‌هایی را که git منتشر می‌کند برای الگوی کلیدهای Apify، Groq، Fireworks، Jev، OpenAI و Anthropic اسکن می‌کند. GitHub Actions هم همین تست را روی هر push اجرا می‌کند.
+- برای جلوگیری از commit تصادفی کلید، یک‌بار این را بزنید:
+
+```sh
+npm run hooks
+```
+
+از آن به بعد هر commit که کلید داشته باشد متوقف می‌شود. دستی هم می‌توانید چک کنید: `npm run secrets`
+
+- سرور فقط روی `127.0.0.1` اجرا می‌شود و از بیرون کامپیوتر شما در دسترس نیست. **این برنامه برای هاست عمومی ساخته نشده.**
+- کلید را هرگز در issue، چت یا اسکرین‌شات قرار ندهید. اگر کلیدی لو رفت، فوراً آن را در کنسول همان سرویس باطل کنید و کلید جدید بسازید.
+
+## توسعه
 
 ```sh
 npm run check
 npm test
 ```
 
-Tests use mocked provider responses and local FFmpeg fixtures; they do not make paid API calls. Provider key verification checks account access, not a successful end-to-end analysis. A small live pilot is the final setup check.
+تست‌ها با پاسخ‌های شبیه‌سازی‌شده اجرا می‌شوند و هیچ درخواست پولی ارسال نمی‌کنند.
 
-- `server.mjs`: local HTTP server, API, credentials in memory.
-- `lib/providers.mjs`: provider calls and media extraction.
-- `lib/pipeline.mjs`: processing, persistence, retries, and cache.
-- `lib/schema.mjs`: Jev classification definitions.
-- `public/`: research dashboard and recording views.
-- `data/`: generated automatically, local only.
+- `server.mjs`: سرور محلی و API
+- `lib/`: فراخوانی سرویس‌ها، پردازش، و تعریف دسته‌بندی‌های Jev
+- `public/`: داشبورد پژوهش و استودیوی ضبط؛ متن‌های فارسی در `public/fa.js` و استایل در `public/fa.css`
+- `scripts/check-secrets.mjs`: اسکنر کلید
 
-MIT licensed. This is an independent project, not an official Instagram, Apify, Fireworks, Groq, or TypeSafe product.
+دسته‌بندی‌های Jev عمداً به انگلیسی مانده‌اند تا دقت مدل حفظ شود؛ فقط نمایش آن‌ها فارسی شده است.
+
+## منبع و مجوز
+
+نسخهٔ فارسی بر پایهٔ [Creator Lab](https://github.com/artemnovitckii/creator-lab) ساختهٔ Artem Novitckii است و تحت مجوز MIT منتشر می‌شود. راهنمای انگلیسی اصلی: [README.en.md](README.en.md)
+
+این پروژه مستقل است و محصول رسمی اینستاگرام، Apify، Groq، Fireworks یا TypeSafe نیست.
+
+</div>

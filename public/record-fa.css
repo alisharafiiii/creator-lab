@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap');
+/* Persian layer for the recording studio. The plot and wall keep pixel/percent positions, so they stay LTR. */
+html[dir=rtl] body,html[dir=rtl] button,html[dir=rtl] select,html[dir=rtl] input,html[dir=rtl] #canvas,html[dir=rtl] #canvas *{font-family:'Vazirmatn',system-ui,sans-serif!important;letter-spacing:0!important}
+html[dir=rtl] .plot,html[dir=rtl] #wall,html[dir=rtl] .xlabels{direction:ltr}
+html[dir=rtl] .xlabels span,html[dir=rtl] .axis{direction:rtl}
+html[dir=rtl] h1{font-weight:800}
+html[dir=rtl] .quote,html[dir=rtl] .row p,html[dir=rtl] .map-card p{line-height:1.7}

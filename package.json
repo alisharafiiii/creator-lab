@@ -5,14 +5,16 @@
   "scripts": {
     "start": "node --env-file-if-exists=.env server.mjs",
     "test": "node --test tests/*.test.mjs",
-    "check": "node --check server.mjs && node --check lib/pipeline.mjs && node --check lib/providers.mjs && node --check public/app.js && node --check public/research.mjs && node --check public/record.js && node --check scripts/setup.mjs && node --check scripts/doctor.mjs",
+    "check": "node --check server.mjs && node --check lib/pipeline.mjs && node --check lib/providers.mjs && node --check public/app.js && node --check public/research.mjs && node --check public/record.js && node --check scripts/setup.mjs && node --check scripts/doctor.mjs && node --check public/fa.js && node --check scripts/check-secrets.mjs",
     "setup": "node scripts/setup.mjs",
-    "doctor": "node scripts/doctor.mjs"
+    "doctor": "node scripts/doctor.mjs",
+    "secrets": "node scripts/check-secrets.mjs",
+    "hooks": "git config core.hooksPath .githooks"
   },
   "engines": {
     "node": ">=22.9.0"
   },
   "version": "1.0.0",
-  "description": "Local Instagram Reel research with Apify, Jev, and Fireworks or Groq.",
+  "description": "پژوهش محلی روی ریلزهای اینستاگرام با Apify، Groq یا Fireworks و Jev — رابط فارسی",
   "license": "MIT"
 }

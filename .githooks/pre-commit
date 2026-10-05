@@ -1,0 +1,3 @@
+#!/bin/sh
+# Blocks commits that would publish an API key. Enable with: npm run hooks
+node scripts/check-secrets.mjs || exit 1

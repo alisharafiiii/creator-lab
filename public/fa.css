@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap');
+/* Nabulines theme: monochrome, one lime accent, Vazirmatn throughout. Loaded after styles.css. */
+:root{--paper:#f7f7f5;--panel:#ffffff;--soft:#f0f0ee;--ink:#0b0b0b;--muted:#6e6e6a;--line:#e3e3df;--accent:#d4ff3f;--dark:#0b0b0b;--radius:14px;
+ --sans:'Vazirmatn','DM Sans',system-ui,sans-serif;--mono:'Vazirmatn','DM Mono',monospace;--serif:'Vazirmatn',system-ui,sans-serif}
+html[dir=rtl] body{font-family:var(--sans);font-size:14px;background:var(--paper)}
+html[dir=rtl] *{letter-spacing:0!important}
+
+/* Small mono captions were sized for Latin; Persian needs more room. */
+html[dir=rtl] .eyebrow,html[dir=rtl] .small-label,html[dir=rtl] .stats span,html[dir=rtl] .filterbar label,html[dir=rtl] .research-filters label,
+html[dir=rtl] .stage-heading,html[dir=rtl] .stage-footer,html[dir=rtl] .inspector-heading,html[dir=rtl] .post-metrics span,html[dir=rtl] .anatomy-heading,
+html[dir=rtl] .research-summary span,html[dir=rtl] .research-summary small,html[dir=rtl] th,html[dir=rtl] .findings-sort,html[dir=rtl] .panel-label,
+html[dir=rtl] .connection,html[dir=rtl] .edition,html[dir=rtl] footer,html[dir=rtl] .example-copy>small,html[dir=rtl] .example-metrics span,
+html[dir=rtl] .examples-pagination,html[dir=rtl] .sample-warning,html[dir=rtl] .metric-count,html[dir=rtl] #anatomy-legend,html[dir=rtl] .segment small,
+html[dir=rtl] .preview-caption time,html[dir=rtl] .notice,html[dir=rtl] #replay-status,html[dir=rtl] .tag,html[dir=rtl] .comparison small{font-family:var(--sans);font-size:11.5px}
+html[dir=rtl] .eyebrow,html[dir=rtl] .small-label,html[dir=rtl] .stats span,html[dir=rtl] th{font-weight:600;color:var(--muted)}
+html[dir=rtl] small{font-size:11px}
+
+/* Buttons */
+button{border-radius:10px;border-color:var(--line)}
+button:hover{background:var(--soft)}
+button.primary{background:var(--ink);color:#fff;border-color:var(--ink);font-weight:600;padding:11px 18px}
+button.primary:hover{background:#262626}
+html[dir=rtl] .primary span{margin:0 14px 0 0}
+.quiet{border-radius:8px}
+.replay-button{background:var(--accent);border-color:var(--accent);color:var(--ink);font-weight:700;border-radius:999px;padding:10px 18px}
+.replay-button:hover{background:#c6f52c}
+html[dir=rtl] .replay-button span{margin:0 0 0 8px}
+
+/* Header */
+.topbar{border-bottom:1px solid var(--line)}
+.brand{font-weight:800;font-size:19px}
+.brand-mark{font:800 26px var(--sans);width:auto;background:var(--ink);color:#fff;border-radius:9px;padding:2px 9px 5px;letter-spacing:-2px!important;direction:ltr}
+.brand-mark span{color:var(--accent)}
+html[dir=rtl] .brand-mark{margin:0 0 0 4px}
+html[dir=rtl] .edition{margin:0 14px 0 0;background:var(--soft);border-radius:999px;padding:4px 10px;color:var(--muted)}
+.connection:before,.status-dot{background:#22c55e;box-shadow:0 0 0 3px #22c55e26}
+html[dir=rtl] .connection:before,html[dir=rtl] .status-dot{margin:0 0 0 8px}
+
+/* Intro */
+h1{font:800 clamp(38px,4.6vw,66px)/1.15 var(--sans)}
+h1 span{font-style:normal;color:var(--ink);background:linear-gradient(transparent 62%,var(--accent) 62%);padding:0 4px}
+.intro p{font-size:14px}
+.intro-right{width:380px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px}
+.intro-right select{border-radius:10px;padding:11px;background:var(--soft);border-color:transparent;font-weight:600}
+.run-actions{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 4px;justify-content:flex-start}
+.run-actions .quiet{white-space:nowrap;font-size:12px;background:var(--soft);padding:7px 11px}
+.run-actions .quiet:hover{background:#e6e6e3}
+html[dir=rtl] .intro-right #run-note{text-align:right;font-size:12px;color:var(--muted);margin:8px 0 0}
+
+/* Notice and stats */
+.notice,.notice.real{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:11px 14px;line-height:1.8}
+html[dir=rtl] .notice{border-left:1px solid var(--line);border-right:3px solid var(--ink)}
+.stats{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+html[dir=rtl] .stats>div{border-right:0;border-left:1px solid var(--line)}
+html[dir=rtl] .stats>div:last-child{border-left:0}
+.stats strong{font-weight:800;font-size:32px}
+.progress-track{height:6px;border-radius:99px;background:var(--soft);overflow:hidden}
+.progress-track>div{background:var(--ink);border-radius:99px}
+
+/* Explorer */
+.explorer{background:var(--panel);border-radius:var(--radius);overflow:hidden}
+.canvas-flow>span:nth-child(2){color:var(--muted)}
+.research-filters{background:var(--soft)}
+.research-filters label{text-transform:none}
+.research-filters select,.filterbar select{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.filterbar select{max-width:170px;font-size:12.5px}
+.filter-join{font:600 20px var(--sans);color:var(--muted)}
+html[dir=rtl] .research-prompt{margin:0 0 0 12px}
+html[dir=rtl] .research-jump{margin:0 auto 0 0;border-bottom-color:var(--ink)}
+html[dir=rtl] .filterbar .quiet{margin:0 auto 0 0}
+html[dir=rtl] .filterbar{gap:14px}
+.legend button{font-size:12px;color:var(--muted);border-radius:999px}
+.legend button.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.legend button.active b{color:var(--accent)}
+html[dir=rtl] .swatch{margin:0 0 0 6px}
+.stage.map{background:radial-gradient(#d9d9d4 .6px,transparent .6px);background-size:14px 14px}
+.tile.selected{outline-color:var(--ink)}
+.tile.processing{box-shadow:0 0 0 3px var(--accent),0 0 30px var(--accent)}
+#axes line{stroke:#e2e2de}
+#axes .median{stroke:#9a9a94}
+#axes text{fill:#8a8a85;font-family:var(--sans)}
+
+/* The plotting canvas is positioned in pixels from the left; keep it left-to-right. */
+html[dir=rtl] .stage,html[dir=rtl] #axes,html[dir=rtl] #tiles,html[dir=rtl] #map-tiles{direction:ltr}
+html[dir=rtl] .panel-label{direction:rtl}
+
+/* Inspector */
+.inspector{background:#fbfbfa}
+html[dir=rtl] .inspector{border-left:0;border-right:1px solid var(--line)}
+.preview-media{border-radius:10px}
+.tag{background:var(--soft);border-radius:999px;padding:4px 10px}
+html[dir=rtl] .tag{margin:9px 0 0 4px}
+html[dir=rtl] .preview-caption a{border-bottom-color:var(--ink)}
+blockquote{font:700 22px/1.6 var(--sans)}
+.post-metrics strong{font-weight:800;font-size:21px}
+#anatomy-bar{height:10px;border-radius:99px}
+html[dir=rtl] .transcript{padding:0 0 0 6px;font-size:13px;line-height:2}
+html[dir=rtl] .segment{border-left:0;border-right:3px solid var(--color);padding:2px 10px 2px 0}
+
+/* Findings */
+.findings-header h2,.examples-heading h3,.comparison h3,dialog h2,#schema-content article h3{font-family:var(--sans);font-weight:800}
+.research-summary{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius)}
+html[dir=rtl] .research-summary>div{border-right:0;border-left:1px solid var(--line);padding:18px 22px}
+html[dir=rtl] .research-summary>div:last-child{border-left:0}
+.research-summary strong{font-weight:800}
+.table-wrap{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius)}
+html[dir=rtl] table{direction:rtl}
+html[dir=rtl] th,html[dir=rtl] td{text-align:right}
+.ranked-metric{background:#f4ffd4}
+.comparing{background:var(--soft)}
+.comparison{background:var(--soft);border-radius:var(--radius)}
+.comparison article{background:var(--panel);border-radius:12px}
+html[dir=rtl] .comparison dd{text-align:left}
+.example-card{background:var(--panel);border-radius:var(--radius);overflow:hidden}
+.example-thumbnail>span{background:#0b0b0bdd}
+.example-copy h4{font:700 15px/1.7 var(--sans)}
+html[dir=rtl] .example-links a{border-bottom-color:var(--ink)}
+html[dir=rtl] .run-log summary span{float:left}
+
+/* Dialogs and forms */
+dialog{border-radius:18px;background:var(--panel)}
+dialog input,dialog select{border-radius:10px;background:var(--soft);border-color:transparent}
+html[dir=rtl] select{background-position:left 10px center}
+#toast{background:var(--ink);border-radius:999px}
+
+@media(max-width:760px){.intro-right{width:100%}h1{font-size:40px}.stats strong{font-size:24px}.brand-mark{font-size:20px}}
+.post-metrics{gap:14px}.post-metrics>div{flex:1;min-width:0}.post-metrics strong{white-space:nowrap;font-size:19px}
