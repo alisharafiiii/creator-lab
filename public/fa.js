@@ -14,7 +14,7 @@ export const labels={
  no_audio:'بدون صدا',too_little_speech:'گفتار ناکافی',needs_retry:'نیاز به تلاش مجدد',unclassified:'دسته‌بندی‌نشده',
  views:'بازدید',plays:'پخش',
  groq:'گروک',fireworks:'فایرورکس',apify:'اپیفای',jev:'جِو',
- running:'در حال اجرا',scraping:'در حال جمع‌آوری',paused:'متوقف',completed:'تکمیل‌شده',complete:'کامل',done:'کامل',stopped:'متوقف',error:'خطا',failed:'ناموفق',queued:'در صف',idle:'آماده',created:'ایجادشده'
+ running:'در حال اجرا',scraping:'در حال جمع‌آوری',paused:'متوقف',completed:'تکمیل‌شده',complete:'کامل',done:'کامل',stopped:'متوقف',error:'خطا',failed:'ناموفق',queued:'در صف',idle:'آماده',created:'ایجادشده',partial:'نیمه‌کاره'
 };
 const nf=new Intl.NumberFormat('fa-IR');
 export const num=n=>nf.format(n);

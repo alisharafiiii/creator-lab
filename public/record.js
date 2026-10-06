@@ -15,7 +15,7 @@ function safeImages(){document.querySelectorAll('img').forEach(el=>{el.onerror=(
 function resize(){const scale=Math.min(innerWidth/1080,(innerHeight-(document.body.classList.contains('clean')?0:140))/1000);const s=Math.max(.2,scale);$('#canvas').style.transform=`scale(${s})`;$('#holder').style.width=`${1080*s}px`;$('#holder').style.height=`${1000*s}px`;}
 function source(){return job.id==='demo'?'نمایش آزمایشی مصنوعی':`@${job.creator} · تحلیل ذخیره‌شده`;}
 function build(){
- $('#canvas').className=variant;$('#source').textContent=source();$('#headline').textContent={scanner:'درون محتوا.',map:'شکل گرفتن الگوها را ببینید.',script:'هر اسکریپت یک ساختار دارد.'}[variant];
+ $('#canvas').className=variant;$('#source').textContent=source();$('#headline').textContent={scanner:'توی دل محتوا.',map:'ببین الگوها چطوری شکل می‌گیرن.',script:'هر اسکریپت یه ساختاری داره.'}[variant];
  $('#detail-title').textContent=variant==='map'?'نقشهٔ عملکرد':'زیر قاب';
  lastPage=lastHero=-1;pointNodes=[];
  $('#footnote').textContent=job.id==='demo'?'دادهٔ مصنوعی · تحلیل واقعی نیست':'نتایج ذخیره‌شده · پخش مجدد';
@@ -39,7 +39,7 @@ function hero(p){
   for(const s of anatomy)if(picked.length<3&&!picked.includes(s))picked.push(s);
   picked.sort((a,b)=>anatomy.indexOf(a)-anatomy.indexOf(b));
   $('#detail').innerHTML=`<div class="hero">${img(p)}<div><div class="field"><b>${esc(label(a.labels.mechanism?.value))} / ${esc(label(a.labels.structure?.value))}</b></div><p class="quote">${esc(opening)}</p><div class="metrics"><span><b>${fmt(p[metric])}</b> ${label(metric)}</span><span><b>${fmt(p.likes)}</b> لایک</span></div></div></div><div class="rows">${picked.map(s=>`<div class="row"><small style="--color:${roleColors[s.value]||'#b5bfb1'}">${esc(label(s.value))}${Number.isFinite(s.start)?`<br><br>${s.start.toLocaleString('fa-IR',{maximumFractionDigits:1})} ث`:''}</small><p>${esc(s.text)}</p></div>`).join('')}</div>`;
-  $('#bottom').textContent='جملهٔ آغازین را پیدا کنید. ببینید ایده چطور پیش می‌رود.';
+  $('#bottom').textContent='اولین جمله رو پیدا کن، ببین ایده چطوری جلو می‌ره.';
  }
  safeImages();
 }
@@ -47,7 +47,7 @@ function render(){
  if(!job)return;
  const f=Math.max(0,Math.min(1,time/duration)),n=Math.min(posts.length,Math.floor(f*posts.length)),active=Math.max(0,n-1),pageSize=variant==='map'?24:30,page=Math.floor(active/pageSize);
  $('#count').textContent=fa(n);$('#labels').textContent=fa(cumulative[n]?.labels||0);$('#cost').textContent=cumulative[n]?.known?`$${cumulative[n].cost.toFixed(4)}`:'—';$('#progress').style.width=`${f*100}%`;$('#progress-text').textContent=`${fa(n)} / ${fa(posts.length)} اسکریپت`;$('#seek').value=Math.round(f*1000);
- if(!posts.length){$('#detail').textContent='هنوز اسکریپت دسته‌بندی‌شده‌ای نیست. ابتدا در داشبورد پژوهش یک تحلیل اجرا کنید.';$('#bottom').textContent='نتایج ذخیره‌شدهٔ شما اینجا نمایش داده می‌شود.';return;}
+ if(!posts.length){$('#detail').textContent='هنوز اسکریپت دسته‌بندی‌شده‌ای نیست. اول از داشبورد یه تحلیل بگیر.';$('#bottom').textContent='نتیجه‌های ذخیره‌شده‌ت اینجا میاد.';return;}
  if(page!==lastPage){lastPage=page;$('#wall').innerHTML=posts.slice(page*pageSize,(page+1)*pageSize).map((p,i)=>`<div class="tile" data-index="${page*pageSize+i}">${img(p)}</div>`).join('');$('#page-number').textContent=`${fa(page*pageSize+1)}–${fa(Math.min(posts.length,(page+1)*pageSize))}`;safeImages();}
  document.querySelectorAll('#wall .tile').forEach(el=>{const i=Number(el.dataset.index);el.classList.toggle('future',i>=n);el.classList.toggle('active',n>0&&i===active);});
  // Hold a readable example while the batch continues to fill. This is replay, not a live latency readout.
@@ -62,11 +62,11 @@ function render(){
 }
 function tick(now){if(playing){time+=(now-last)/1000;if(time>duration+2){if($('#loop').checked)time=0;else{time=duration;playing=false;$('#play').textContent='پخش';}}render();}last=now;requestAnimationFrame(tick);}
 function syncURL(){params.set('variant',variant);params.set('run',$('#archive').value);history.replaceState(null,'',`/record?${params}`);}
-async function load(id){playing=false;$('#play').textContent='پخش';$('#error').textContent='';const r=await fetch(id==='demo'?'/api/demo':`/api/runs/${encodeURIComponent(id)}`);if(!r.ok)throw Error('آرشیو بارگذاری نشد');job=await r.json();if(id==='demo')job.id='demo';posts=job.posts.filter(p=>p.analysis&&!p.excludedReason);metric=posts.some(p=>p.plays>0)?'plays':'views';cumulative=[{labels:0,cost:0,known:true}];for(const p of posts){const prev=cumulative.at(-1),cost=p.analysis.costUsd; cumulative.push({labels:prev.labels+Object.keys(p.analysis.labels||{}).length+(p.analysis.anatomy?.length||0),cost:prev.cost+(Number.isFinite(cost)?cost:0),known:prev.known&&Number.isFinite(cost)});}time=0;syncURL();build();}
+async function load(id){playing=false;$('#play').textContent='پخش';$('#error').textContent='';const r=await fetch(id==='demo'?'/api/demo':`/api/runs/${encodeURIComponent(id)}`);if(!r.ok)throw Error('آرشیو باز نشد');job=await r.json();if(id==='demo')job.id='demo';posts=job.posts.filter(p=>p.analysis&&!p.excludedReason);metric=posts.some(p=>p.plays>0)?'plays':'views';cumulative=[{labels:0,cost:0,known:true}];for(const p of posts){const prev=cumulative.at(-1),cost=p.analysis.costUsd; cumulative.push({labels:prev.labels+Object.keys(p.analysis.labels||{}).length+(p.analysis.anatomy?.length||0),cost:prev.cost+(Number.isFinite(cost)?cost:0),known:prev.known&&Number.isFinite(cost)});}time=0;syncURL();build();}
 $('#variant').onchange=()=>{variant=$('#variant').value;syncURL();build();};$('#archive').onchange=()=>load($('#archive').value).catch(e=>$('#error').textContent=e.message);
 $('#play').onclick=()=>{playing=!playing;last=performance.now();$('#play').textContent=playing?'توقف':'پخش';};$('#restart').onclick=()=>{time=0;render();};$('#duration').onchange=()=>{time=time/duration*Number($('#duration').value);duration=Number($('#duration').value);render();};$('#seek').oninput=()=>{time=Number($('#seek').value)/1000*duration;render();};$('#clean').onclick=()=>{document.body.classList.toggle('clean');resize();};
 window.addEventListener('resize',resize);window.addEventListener('keydown',e=>{if(/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return;if(e.code==='Space'){e.preventDefault();$('#play').click();}if(e.key.toLowerCase()==='r')$('#restart').click();if(e.key.toLowerCase()==='c')$('#clean').click();});
 // Explicit seek hook is useful for deterministic screenshots; it never runs inference.
 window.recording={seek(seconds){time=seconds;render();},get state(){return {variant,time,classified:posts.length,playing};}};
-try{const r=await fetch('/api/bootstrap');if(!r.ok)throw Error('سرور در دسترس نیست');const boot=await r.json();$('#archive').innerHTML='<option value="demo">نمایش آزمایشی</option>'+boot.runs.map(r=>`<option value="${esc(r.id)}">@${esc(r.creator)} · ${fa(r.completed)} اسکریپت</option>`).join('');const wanted=params.get('run')||boot.runs.find(r=>r.completed>0)?.id||'demo';$('#archive').value=[...$('#archive').options].some(o=>o.value===wanted)?wanted:'demo';await load($('#archive').value);if(params.get('clean')==='1')$('#clean').click();if(params.get('autoplay')==='1')$('#play').click();}catch(e){$('#error').textContent=e.message;}
+try{const r=await fetch('/api/bootstrap');if(!r.ok)throw Error('سرور جواب نمی‌ده');const boot=await r.json();$('#archive').innerHTML='<option value="demo">نمایش آزمایشی</option>'+boot.runs.map(r=>`<option value="${esc(r.id)}">@${esc(r.creator)} · ${fa(r.completed)} اسکریپت</option>`).join('');const wanted=params.get('run')||boot.runs.find(r=>r.completed>0)?.id||'demo';$('#archive').value=[...$('#archive').options].some(o=>o.value===wanted)?wanted:'demo';await load($('#archive').value);if(params.get('clean')==='1')$('#clean').click();if(params.get('autoplay')==='1')$('#play').click();}catch(e){$('#error').textContent=e.message;}
 requestAnimationFrame(tick);

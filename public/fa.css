@@ -125,3 +125,13 @@ html[dir=rtl] select{background-position:left 10px center}
 
 @media(max-width:760px){.intro-right{width:100%}h1{font-size:40px}.stats strong{font-size:24px}.brand-mark{font-size:20px}}
 .post-metrics{gap:14px}.post-metrics>div{flex:1;min-width:0}.post-metrics strong{white-space:nowrap;font-size:19px}
+
+/* Main navigation shared by dashboard, comparison and recording studio. */
+.main-nav{display:flex;gap:4px;background:var(--soft);padding:4px;border-radius:999px}
+.main-nav a{padding:7px 14px;border-radius:999px;font-size:13px;color:var(--muted);white-space:nowrap}
+.main-nav a:hover{color:var(--ink)}
+.main-nav a.active{background:var(--ink);color:#fff;font-weight:600}
+.main-nav .new{background:var(--accent);color:var(--ink);font-size:10px;font-weight:800;border-radius:999px;padding:1px 7px;margin-right:4px}
+@media(max-width:1100px){.topbar{height:auto;padding:12px 0;flex-wrap:wrap;gap:10px}}
+@media(max-width:760px){.main-nav{order:3;width:100%;overflow-x:auto}.main-nav a{font-size:12px;padding:6px 10px}}
+.run-actions .live-link{background:var(--accent);font-weight:700}

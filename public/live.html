@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="fa" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>کریتور لب · تحلیل زنده</title><link rel="stylesheet" href="/compare.css"><link rel="stylesheet" href="/live.css"></head>
+<body>
+<header class="topbar"><a class="brand" href="/"><span class="brand-mark">c<span>l</span></span> کریتور لب</a><nav><a href="/">داشبورد پژوهش</a><a href="/compare">مقایسهٔ پیج‌ها</a><a href="/record">استودیوی ضبط</a></nav><a class="cta" href="/?new=1">تحلیل جدید ↖</a></header>
+<main>
+<section class="live-head"><div><span class="eyebrow" id="status-pill">در حال آماده‌سازی…</span><h1 id="title">داریم پیج رو <mark>تحلیل</mark> می‌کنیم</h1><p id="subtitle">ریل‌ها به ترتیب جمع می‌شن، بعد یکی‌یکی می‌رن سر جاشون روی نقشه.</p></div><div class="head-actions"><button id="replay" class="ghost" hidden>↻ دوباره پخش کن</button><a id="to-dashboard" class="ghost" href="/">باز کردن توی داشبورد</a></div></section>
+
+<ol class="steps" id="steps">
+<li data-step="collect"><span class="dot"></span><div><b>جمع کردن ریل‌ها</b><small id="s-collect">در انتظار…</small><div class="mini"><i></i></div></div></li>
+<li data-step="transcribe"><span class="dot"></span><div><b>تبدیل حرف‌ها به متن</b><small id="s-transcribe">—</small><div class="mini"><i></i></div></div></li>
+<li data-step="classify"><span class="dot"></span><div><b>تشخیص هوک</b><small id="s-classify">—</small><div class="mini"><i></i></div></div></li>
+<li data-step="place"><span class="dot"></span><div><b>چیدن روی نقشه</b><small id="s-place">—</small><div class="mini"><i></i></div></div></li>
+</ol>
+
+<section class="stage">
+<div class="panel wall-panel card"><div class="panel-title"><span>ریل‌ها به ترتیب انتشار</span><small id="wall-count"></small></div><div id="wall" class="wall"></div></div>
+<div class="panel map-panel card"><div class="panel-title"><span>نقشهٔ عملکرد</span><small>هر چی بالاتر، لایک بیشتر به ازای هر ۱هزار پخش · هر چی چپ‌تر، پخش بیشتر</small></div><div class="chart" id="chart"><div class="y-label">لایک در هر ۱هزار پخش ↑</div><div class="plot" id="plot"></div><div class="x-axis" id="x-axis"></div></div><div class="legend-live" id="legend"></div></div>
+</section>
+
+<section class="ticker card" id="ticker" hidden><img id="t-img" alt=""><div class="t-body"><div class="t-top"><span id="t-num" class="t-num"></span><span id="t-hook" class="chip"></span></div><p id="t-text" dir="auto"></p><div class="t-stats"><span><b id="t-reach"></b> پخش</span><span><b id="t-likes"></b> لایک</span><span><b id="t-rate"></b> در هر ۱هزار</span></div></div></section>
+
+<section class="finish card" id="finish" hidden></section>
+<p id="error" class="error-box" hidden></p>
+<footer>کریتور لب / تحلیل زنده <span>ترتیب نمایش همون ترتیب انتشار ریل‌هاست؛ پردازش واقعی ممکنه جابه‌جا تموم بشه.</span></footer>
+</main>
+<script type="module" src="/live.js"></script></body></html>

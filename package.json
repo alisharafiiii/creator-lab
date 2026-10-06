@@ -5,11 +5,12 @@
   "scripts": {
     "start": "node --env-file-if-exists=.env server.mjs",
     "test": "node --test tests/*.test.mjs",
-    "check": "node --check server.mjs && node --check lib/pipeline.mjs && node --check lib/providers.mjs && node --check public/app.js && node --check public/research.mjs && node --check public/record.js && node --check scripts/setup.mjs && node --check scripts/doctor.mjs && node --check public/fa.js && node --check scripts/check-secrets.mjs",
+    "check": "node --check server.mjs && node --check lib/pipeline.mjs && node --check lib/providers.mjs && node --check public/app.js && node --check public/research.mjs && node --check public/record.js && node --check scripts/setup.mjs && node --check scripts/doctor.mjs && node --check public/fa.js && node --check scripts/check-secrets.mjs && node --check public/compare.js && node --check public/compare-core.mjs && node --check scripts/stop.mjs && node --check public/live.js",
     "setup": "node scripts/setup.mjs",
     "doctor": "node scripts/doctor.mjs",
     "secrets": "node scripts/check-secrets.mjs",
-    "hooks": "git config core.hooksPath .githooks"
+    "hooks": "git config core.hooksPath .githooks",
+    "stop": "node scripts/stop.mjs"
   },
   "engines": {
     "node": ">=22.9.0"
